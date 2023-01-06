@@ -8,8 +8,10 @@ const Chat = ({ messages }) => {
 
         <View style={styles.Chatbox}>
             <ScrollView>
-                {messages.map((x) => {
-                    return (x.host ? (<HostMessageComponent message={x.message} key={x.id} />) : (<ClientMessageComponent message={x.message} key={x.id} />))
+                {messages.map((content) => {
+                    return (
+                        content.host ? (<HostMessageComponent content={content} key={content.uuid} />) : (<ClientMessageComponent content={content} key={content.uuid} />
+                        ))
                 })}
             </ScrollView>
         </View>

@@ -1,19 +1,26 @@
-import React, { Component, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { View, Image, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 
 const ButtonsComponent = ({ handleChange }) => {
     const [message, setMessage] = useState('');
     const sendMessage = () => {
         handleChange(message);
+        setMessage('');
     }
 
     return (
         <View style={styles.containerButtons}>
             <View style={styles.boxInput}>
-                <TextInput onChangeText={setMessage} value={message}></TextInput>
+                <TextInput onChangeText={setMessage} onSubmitEditing={sendMessage} value={message}></TextInput>
             </View>
+            
             <View style={styles.boxSend}>
-                <TouchableOpacity onPress={sendMessage}><Text>Enviar</Text></TouchableOpacity>
+                <TouchableOpacity onPress={sendMessage}>
+                    <Image resizeMode="cover"
+                        source={require('../assets/icons/send.png')}
+                        style={styles.iconSend}
+                    />
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -28,16 +35,23 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         marginTop: 10,
         marginLeft: 10,
-        marginRight: 10,
+        marginRight: 10,        
     },
     boxInput: {
         borderWidth: 1,
-        width: 290,
+        height: 50,
+        width: 250,
         borderColor: "thistle",
         borderRadius: 10
     },
     boxSend: {
         marginTop: 15,
-        marginLeft: 15
+        marginLeft: 15,        
+    },
+    iconSend: {
+        height: 30,
+        width: 30,
+        
+        marginLeft: 70
     }
 });
